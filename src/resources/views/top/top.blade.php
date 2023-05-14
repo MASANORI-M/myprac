@@ -22,6 +22,6 @@
     </head>
     <body class="antialiased">
         <h1>MASAのtestページ</h1>
-        <a href="">ログイン</a>
+        <a href="{{ route('login') }}">ログイン</a>
     </body>
 </html>

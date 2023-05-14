@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class Image extends Model
 {
     use HasFactory;
-    protected $guarded = array('id');
 
-    public function image()
+    public function user()
     {
-        return $this->hasMany('App\Models\Image');
+        return $this->belongsTo('App\Models\User');
     }
 }

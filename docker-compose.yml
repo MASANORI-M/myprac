@@ -4,13 +4,13 @@ services:
   nginx:
     container_name: myprac_nginx
     build:
-      context: ./docker/nginx/
+      context: ./dev/docker/nginx/
     ports:
       - 80:80
     volumes:
       # - ./:/var/www/vhosts/myprac/:cached
-      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:cached
-      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:cached
+      - ./dev/docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:cached
+      - ./dev/docker/nginx/nginx.conf:/etc/nginx/nginx.conf:cached
     depends_on:
       - php
     mem_limit: 500m
@@ -18,10 +18,10 @@ services:
   php:
     container_name: myprac_php
     build:
-      context: ./docker/php/
+      context: ./dev/docker/php/
     volumes:
       - ./src:/var/www/vhosts/myprac/:cached
-      - ./docker/php/www.conf:/etc/php-fpm.d/www.conf:cached
+      - ./dev/docker/php/www.conf:/etc/php-fpm.d/www.conf:cached
     mem_limit: 500m
 
   db:
