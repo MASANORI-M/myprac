@@ -19,9 +19,12 @@ EXPOSE 9000
 # run php-fpm in the foreground
 ENTRYPOINT /usr/sbin/php-fpm -F
 
+WORKDIR /var/www/vhosts/myprac
+
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-COPY ./www.conf /etc/php-fpm.d/www.conf
-COPY ./php.ini /etc/php.ini
+COPY ./docker/prd/php/www.conf /etc/php-fpm.d/www.conf
+COPY ./docker/prd/php/php.ini /etc/php.ini
+COPY ./src .
 
 # nodeのインストール
 RUN curl -fsSL https://rpm.nodesource.com/setup_18.x | bash -
@@ -29,5 +32,3 @@ RUN yum -y install nodejs
 
 # Node.jsの依存パッケージインストール
 RUN npm install -g npm
-
-WORKDIR /var/www/vhosts/myprac
