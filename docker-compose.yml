@@ -12,6 +12,8 @@ services:
       # - ./docker/dev/nginx/nginx.conf:/etc/nginx/nginx.conf:cached
     depends_on:
       - php
+    networks:
+      - app-network
 
   php:
     container_name: myprac_php
@@ -20,6 +22,8 @@ services:
     volumes:
       - ./src:/var/www/vhosts/myprac/:cached
       # - ./docker/dev/php/www.conf:/etc/php-fpm.d/www.conf:cached
+    networks:
+      - app-network
 
   db:
     image: mysql:8.0
@@ -39,13 +43,21 @@ services:
     volumes:
       - ./src/database/config/:/etc/mysql/conf.d/
     platform: linux/x86_64
+    networks:
+      - app-network
 
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin
+    container_name: myprac_pma
     hostname: phpmyadmin
     depends_on:
       - db
     ports:
       - "9090:80"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

@@ -16,18 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-Route::get('/', [RootController::class, 'index']);
-
-// ログイン
-Route::get('/admin_login', function () {
-    return view('top.login');
-})->name('login');
-Route::POST('/admin_login', [LoginController::class, 'login']);
-Route::get('/admin_logout', [LoginController::class, 'logout'])->middleware('login');
-
-// CMS
-Route::get('/cmstop', [CmsController::class, 'index'])->middleware('login');
+Route::get('/', function () {
+    return view('cms.auth.login');
+});

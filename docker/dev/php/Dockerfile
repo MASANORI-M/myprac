@@ -31,3 +31,5 @@ RUN yum -y install nodejs
 RUN npm install -g npm
 
 WORKDIR /var/www/vhosts/myprac
+
+# RUN chown -R www-data:www-data /var/www/vhosts/myprac
